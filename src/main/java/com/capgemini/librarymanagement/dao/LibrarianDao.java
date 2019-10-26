@@ -11,6 +11,6 @@ public interface LibrarianDao {
 	public List<Books> findAll();
 	public Books findByTitle(String title);
 	public List<Books> findByName(String name);
-	public Boolean acceptRequest(Books title);
+	public Boolean acceptRequest(Books title)  ;
 
 }

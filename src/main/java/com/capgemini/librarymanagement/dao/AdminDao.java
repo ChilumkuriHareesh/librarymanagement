@@ -5,13 +5,16 @@ import java.util.List;
 import com.capgemini.librarymanagement.beans.User;
 
 public interface AdminDao {
+
+	public User adminLogin(String adminId,String password);
+
 	public Boolean registerLibrarian(User librarian);
 
-	public Boolean registerStudent(User student);
+	public Boolean registerUser(User user);
 
-	public Boolean deleteStudent(String userId);
+	public Boolean deleteUser(String userId);
 
-	public User searchStudent(String userId);
+	public User searchUser(String userId);
 
 	public User searchLibrarian(String LibrarianId);
 
@@ -19,6 +22,6 @@ public interface AdminDao {
 
 	public List<User> getAllLibrarian();
 
-	public List<User> getAllStudent();
+	public List<User> getAllUser();
 
 }

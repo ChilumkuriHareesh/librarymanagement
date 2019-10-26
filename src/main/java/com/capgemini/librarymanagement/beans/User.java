@@ -1,28 +1,26 @@
 package com.capgemini.librarymanagement.beans;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="users")
 public class User {
 	@Id
-	@Column(name = "user_id")
-	private String id;
-	@Column(name = "user_name")
+	@Column(name = "id")
+	private Integer id;
+	@Column(name = "name")
 	private String name;
-	@Column(name = "email_id")
+	@Column(name = "email")
 	private String email;
-	@Column
+	@Column(name = "password")
 	private String password;
+	@Column(name = "contact")
+	private Long contact;
 	@Column
 	private String type;
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -43,6 +41,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Long getContact() {
+		return contact;
+	}
+	public void setContact(Long contact) {
+		this.contact = contact;
+	}
 	public String getType() {
 		return type;
 	}
@@ -51,8 +55,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", type=" + type
-				+ "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", contact="
+				+ contact + ", type=" + type + "]";
 	}
 	
 

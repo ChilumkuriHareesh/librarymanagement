@@ -58,7 +58,7 @@ public class LibrarianDaoImpl implements LibrarianDao{
 		}
 		entityManager.close();
 		return isadded;
-	}
+	}//end of update
 				
 	
 

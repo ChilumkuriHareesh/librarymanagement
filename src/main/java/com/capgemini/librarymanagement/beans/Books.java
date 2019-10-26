@@ -1,29 +1,17 @@
 package com.capgemini.librarymanagement.beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="books_inventory")
 public class Books {
-	@Column(name="book_id")
-	private String bookid;
-	@Column(name="book_name")
+	private String bookId;
 	private String title;
-	@Column
-	private String firstauthorname;
-	@Column
-	private String secondauthorname;
-	@Column
+	private String authorName1;
+	private String authorName2;
 	private String publisher;
-	@Column(name="yop")
-	private String yearofpublication;
-	public String getBookid() {
-		return bookid;
+	private String yearOfPublication;
+	public String getBookId() {
+		return bookId;
 	}
-	public void setBookid(String bookid) {
-		this.bookid = bookid;
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
 	}
 	public String getTitle() {
 		return title;
@@ -31,17 +19,17 @@ public class Books {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getFirstauthorname() {
-		return firstauthorname;
+	public String getAuthorName1() {
+		return authorName1;
 	}
-	public void setFirstauthorname(String firstauthorname) {
-		this.firstauthorname = firstauthorname;
+	public void setAuthorName1(String authorName1) {
+		this.authorName1 = authorName1;
 	}
-	public String getSecondauthorname() {
-		return secondauthorname;
+	public String getAuthorName2() {
+		return authorName2;
 	}
-	public void setSecondauthorname(String secondauthorname) {
-		this.secondauthorname = secondauthorname;
+	public void setAuthorName2(String authorName2) {
+		this.authorName2 = authorName2;
 	}
 	public String getPublisher() {
 		return publisher;
@@ -49,17 +37,16 @@ public class Books {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	public String getYearofpublication() {
-		return yearofpublication;
+	public String getYearOfPublication() {
+		return yearOfPublication;
 	}
-	public void setYearofpublication(String yearofpublication) {
-		this.yearofpublication = yearofpublication;
+	public void setYearOfPublication(String yearOfPublication) {
+		this.yearOfPublication = yearOfPublication;
 	}
 	@Override
 	public String toString() {
-		return "Books [bookid=" + bookid + ", title=" + title + ", firstauthorname=" + firstauthorname
-				+ ", secondauthorname=" + secondauthorname + ", publisher=" + publisher + ", yearofpublication="
-				+ yearofpublication + "]";
+		return "Books [bookId=" + bookId + ", title=" + title + ", authorName1=" + authorName1 + ", authorName2="
+				+ authorName2 + ", publisher=" + publisher + ", yearOfPublication=" + yearOfPublication + "]";
 	}
 	
     

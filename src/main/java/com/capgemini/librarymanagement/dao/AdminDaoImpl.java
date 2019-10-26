@@ -8,12 +8,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.capgemini.librarymanagement.beans.User;
 
 public class AdminDaoImpl implements AdminDao {
-	@Autowired
+
 	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TestPersistence");
 	private EntityManager entityManager;
 	private EntityTransaction transaction;
@@ -21,7 +19,59 @@ public class AdminDaoImpl implements AdminDao {
 	private Integer id;
 
 	@Override
-	public Boolean deleteStudent(String userId) {
+	public User adminLogin(String adminId, String password) {
+
+		User admin = null;
+		try {
+			entityManager = entityManagerFactory.createEntityManager();
+			Query query = entityManager.createQuery("FROM User WHERE id=:id and password=:password", User.class);
+			this.id = admin.getId();
+			query.setParameter("id", admin.getId());
+			query.setParameter("password", admin.getPassword());
+			admin = (User) query.getSingleResult();
+			entityManager.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return admin;
+	}
+
+	@Override
+	public Boolean registerLibrarian(User librarian) {
+		entityManager = entityManagerFactory.createEntityManager();
+		transaction = entityManager.getTransaction();
+		boolean isadded = false;
+		try {
+			transaction.begin();
+			entityManager.persist(librarian);
+			transaction.commit();
+			isadded = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		entityManager.close();
+		return isadded;
+	}
+
+	@Override
+	public Boolean registerUser(User user) {
+		entityManager = entityManagerFactory.createEntityManager();
+		transaction = entityManager.getTransaction();
+		boolean isadded = false;
+		try {
+			transaction.begin();
+			entityManager.persist(user);
+			transaction.commit();
+			isadded = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		entityManager.close();
+		return isadded;
+	}
+
+	@Override
+	public Boolean deleteUser(String userId) {
 		entityManager = entityManagerFactory.createEntityManager();
 		transaction = entityManager.getTransaction();
 		try {
@@ -43,7 +93,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public User searchStudent(String userId) {
+	public User searchUser(String userId) {
 		entityManager = entityManagerFactory.createEntityManager();
 		User user=null;
 		String jpql="from User where id= :id and type='student'" ;	
@@ -100,67 +150,33 @@ public class AdminDaoImpl implements AdminDao {
 		entityManager=entityManagerFactory.createEntityManager();
 		String jpqa = "from User where type='librarian'";
 		Query query = entityManager.createQuery(jpqa);
-		List<User> librarian = null;
+		List<User> allEmployees = null;
 		
 		try {
-			librarian = query.getResultList();
+			allEmployees = query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		entityManager.close();
-		return librarian;
+		return allEmployees;
 	}
 
 	@Override
-	public List<User> getAllStudent() {
+	public List<User> getAllUser() {
 		entityManager=entityManagerFactory.createEntityManager();
 		String jpqa = "from User where type ='student'";
 		Query query = entityManager.createQuery(jpqa);
-		List<User> student = null;
+		List<User> allEmployees = null;
 		
 		try {
-			student = query.getResultList();
+			allEmployees = query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		entityManager.close();
-		return student;
-	}
-
-	@Override
-	public Boolean registerLibrarian(User librarian) {
-		entityManager = entityManagerFactory.createEntityManager();
-		transaction = entityManager.getTransaction();
-		boolean isadded = false;
-		try {
-			transaction.begin();
-			entityManager.persist(librarian);
-			transaction.commit();
-			isadded = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		entityManager.close();
-		return isadded;
-	}
-
-	@Override
-	public Boolean registerStudent(User student) {
-		entityManager = entityManagerFactory.createEntityManager();
-		transaction = entityManager.getTransaction();
-		boolean isadded = false;
-		try {
-			transaction.begin();
-			entityManager.persist(student);
-			transaction.commit();
-			isadded = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		entityManager.close();
-		return isadded;
+		return allEmployees;
 	}
 
 }
